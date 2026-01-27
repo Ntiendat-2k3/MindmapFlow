@@ -1,0 +1,89 @@
+{
+  "mindmap": [
+    {
+      "id": "c741cff7-42ce-432a-b150-01982762265f",
+      "name": "hehe",
+      "desc": "hehe",
+      "nodes": [
+        {
+          "width": 250,
+          "height": 60,
+          "id": "root",
+          "data": {
+            "label": "Learn Nextjs"
+          },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "type": "nodeCustomFirst",
+          "deletable": false,
+          "positionAbsolute": {
+            "x": 0,
+            "y": 0
+          },
+          "selected": true,
+          "dragging": false
+        },
+        {
+          "width": 250,
+          "height": 60,
+          "id": "WwIiC3SZPZ8kYCMF85ukT",
+          "position": {
+            "x": -250.66666666666666,
+            "y": 142.73332722981772
+          },
+          "deletable": true,
+          "data": {
+            "label": "New Node"
+          },
+          "type": "nodeCustom",
+          "positionAbsolute": {
+            "x": -250.66666666666666,
+            "y": 142.73332722981772
+          }
+        },
+        {
+          "width": 250,
+          "height": 60,
+          "id": "fUm80ipCu9wLPVBTzPEhT",
+          "position": {
+            "x": 226.66666666666666,
+            "y": 154.06666056315103
+          },
+          "deletable": true,
+          "data": {
+            "label": "New Node"
+          },
+          "type": "nodeCustom",
+          "positionAbsolute": {
+            "x": 226.66666666666666,
+            "y": 154.06666056315103
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "U4Vw6hu_5N8pdtzBbmMGY",
+          "source": "root",
+          "target": "WwIiC3SZPZ8kYCMF85ukT",
+          "type": "edgeCustom"
+        },
+        {
+          "id": "5-c4ynnsAEYCmpJxV2D3a",
+          "source": "root",
+          "target": "fUm80ipCu9wLPVBTzPEhT",
+          "type": "edgeCustom"
+        }
+      ],
+      "metadata": {
+        "image": "https://mindmap-project-seven.vercel.app/_next/static/media/so-do-tu-duy.913b15fe.webp",
+        "title": "hehe",
+        "description": "hehe"
+      },
+      "isAccessible": true,
+      "email": "nguyentiendatg2003@gmail.com",
+      "created_at": "2026/01/28 01:08:42"
+    }
+  ]
+}

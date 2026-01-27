@@ -1,0 +1,228 @@
+@import "../../../../../assets/scss/variables.scss";
+
+#toggle-share-box:checked ~ .share-box {
+  visibility: visible;
+  opacity: 1;
+
+  .share-box-structure {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+#toggle-share-private:checked ~ .share-box {
+  .share-box-structure {
+    .show-private {
+      background-color: $light_purple_button;
+      color: white;
+      border-color: $light_purple_button;
+    }
+
+    .share-box-body {
+      .body-private {
+        display: block;
+      }
+    }
+  }
+}
+
+#toggle-share-public:checked ~ .share-box {
+  .share-box-structure {
+    .show-public {
+      background-color: $light_purple_button;
+      color: white;
+      border-color: $light_purple_button;
+    }
+
+    .share-box-body {
+      .body-public {
+        display: block;
+      }
+    }
+  }
+}
+
+.share-box {
+  position: fixed;
+  inset: 0;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 999;
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(54, 54, 54, 0.4);
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .share-box-structure {
+    scale: 0.98;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(720px, calc(100% - 24px));
+    translate: -50% -50%;
+    background-color: white;
+    border-radius: 12px;
+    padding: 28px;
+    z-index: 2;
+    transition: 0.22s ease;
+    transition-property: scale, opacity;
+
+    .share-box-header {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 18px;
+
+      label {
+        flex: 1;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: rgb(74, 74, 74);
+        padding: 12px 18px;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        border: 2px solid rgb(63, 44, 34);
+        transition: 0.2s ease;
+      }
+    }
+
+    .share-box-body {
+      width: 100%;
+      margin-bottom: 18px;
+
+      .body-private {
+        display: none;
+
+        p {
+          text-align: center;
+          font-size: 1.7rem;
+          font-weight: 600;
+          padding: 10px 0;
+        }
+      }
+
+      .body-public {
+        display: none;
+
+        .group {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 14px;
+
+          label {
+            width: fit-content;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 1.45rem;
+          }
+
+          .row-inline {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            input {
+              flex: 1;
+            }
+
+            .btn-copy {
+              border: 2px solid rgb(63, 44, 34);
+              background: white;
+              font-weight: 700;
+              padding: 10px 14px;
+              border-radius: 10px;
+              cursor: pointer;
+              white-space: nowrap;
+            }
+          }
+
+          input,
+          textarea {
+            padding: 10px 14px;
+            border-radius: 10px;
+            background-color: rgb(249, 250, 251);
+            transition: background-color 0.15s ease;
+            font-size: 1.45rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+
+            &:focus {
+              background-color: transparent;
+              outline: 2px solid rgb(148, 148, 148);
+            }
+          }
+
+          textarea {
+            resize: vertical;
+            min-height: 90px;
+          }
+        }
+      }
+    }
+
+    .share-box-footer {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+
+      label {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: rgb(74, 74, 74);
+        padding: 12px 18px;
+        border-radius: 10px;
+        border: 2px solid rgb(63, 44, 34);
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      label:first-child {
+        flex: 0 0 140px;
+      }
+
+      label:last-child {
+        flex: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .share-box {
+    .share-box-structure {
+      padding: 18px;
+
+      .share-box-footer {
+        flex-direction: column;
+
+        label:first-child,
+        label:last-child {
+          flex: unset;
+          width: 100%;
+        }
+      }
+
+      .share-box-body {
+        .body-public {
+          .group {
+            .row-inline {
+              flex-direction: column;
+
+              .btn-copy {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,108 @@
+@import '../../../assets/scss/variables.scss';
+
+.home-page {
+    background-color: $base_light_color;
+
+    .container {
+        .heading-hero {
+            font-size: 2.4rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 50px 20px 0px 20px;
+            margin-bottom: 40px; 
+        }
+    
+        .button-hero {
+            text-align: center;
+            margin-bottom: 40px;
+    
+            a {
+                padding: 15px 30px;
+                border-radius: 99px;
+                font-weight: 500;
+                color: white;
+                background-color: $base_color;
+            }
+        }
+
+        .img-hero {
+            text-align: center;
+            margin-bottom: 60px;
+
+            img {
+                max-width: 670px;
+            }
+        }
+
+        .advantages {
+            .advantage {
+                margin-bottom: 60px;
+
+                .advantage-heading {
+                    position: relative;
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                    color: rgb(45, 45, 45);
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                    text-align: center;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: -20px;
+                        left: 50%;
+                        width: 100px;
+                        height: 2px;
+                        background-color: rgb(211, 211, 211);
+                        translate: -50% 0%;
+                        z-index: 0;
+                    }
+                }
+
+                .advantage-desc {
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+
+                    p {
+                        max-width: 450px;
+                        color: rgb(126, 126, 126);
+                        font-size: 1.5rem;
+                        line-height: 1.5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Responsive
+
+
+@media screen and (min-width: 992px) {
+    .home-page {
+        .container {
+            max-width: 1140px;
+
+            .heading-hero {
+                font-size: 3rem;
+                padding-top: 100px;
+                margin-bottom: 40px;
+            }
+
+            .img-hero {
+                margin-bottom: 80px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .home-page {
+        .container {
+            max-width: 1360px;
+        }
+    }
+}

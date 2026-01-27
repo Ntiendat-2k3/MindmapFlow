@@ -1,0 +1,119 @@
+@import '../../../assets/scss/variables.scss';
+
+.about-page {
+    padding-top: 50px;
+
+    .container {
+        h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .about {
+            margin-bottom: 50px;
+        }
+
+        .story {
+            margin-bottom: 50px;
+
+            .group-images {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                flex-wrap: wrap;
+                padding: 20px;
+                row-gap: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 26px 7px rgba(0,0,0,0.1);
+                -webkit-box-shadow: 0px 0px 26px 7px rgba(0,0,0,0.1);
+                -moz-box-shadow: 0px 0px 26px 7px rgba(0,0,0,0.1);
+
+                img {
+                    width: calc((100% / 2) - 10px);
+
+                    &:nth-child(odd) {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Responsive
+
+
+@media screen and (min-width: 576px) {
+    .about-page {
+        .container {
+            .story {
+                .group-images {
+                    flex-wrap: nowrap;
+                    justify-content: space-between;
+                    row-gap: 0px;
+
+                    img {
+                        width: calc((100% / 4) - 15px);
+
+                        &:nth-child(odd) {
+                            margin-right: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .about-page {
+        .container {
+            .story {
+                .group-images {
+                    padding: 40px;
+                    column-gap: 25px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .about-page {
+        .container {
+            max-width: 1140px;
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .about-page {
+        padding-top: 100px;
+
+        .container {
+            p {
+                max-width: 90%;
+                margin-bottom: 0px;
+            }
+
+            .story {
+                margin-bottom: 100px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .about-page {
+        .container {
+            max-width: 1360px;
+        }
+    }
+}

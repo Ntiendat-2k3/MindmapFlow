@@ -1,0 +1,30 @@
+.node-custom {
+    position: relative;
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    padding: 0px 20px;
+
+    .main-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        border-radius: 10px;
+
+        .overlay {
+            position: absolute;
+            inset: 0px;
+            background-color: transparent;
+            border-radius: 10px;
+        }
+
+        input {
+            background-color: transparent;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+        }
+    }
+}

@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url('../fonts/static/Nunito-Regular.ttf');
+}
+
+// @font-face {
+//     font-family: 'Nunito';
+//     src: url('../fonts/static/Nunito-Medium.ttf');
+// }
+
+// @font-face {
+//     font-family: 'Nunito';
+//     src: url('../fonts/static/Nunito-SemiBold.ttf');
+// }
+
+// @font-face {
+//     font-family: 'Nunito';
+//     src: url('../fonts/static/Nunito-Bold.ttf');
+// }
+
+// @font-face {
+//     font-family: 'Nunito';
+//     src: url('../fonts/static/Nunito-ExtraBold.ttf');
+// }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10px;
+}
+
+body {
+    overflow-x: hidden;
+    font-size: 1.6rem;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+textarea,
+button,
+input {
+    appearance: none;
+    outline: none;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+}

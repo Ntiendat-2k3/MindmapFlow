@@ -1,0 +1,136 @@
+@import '../../../assets/scss/variables.scss';
+
+.features-page {
+    padding-top: 50px;
+
+    .container {
+        text-align: center;
+
+        .features-heading {
+            font-size: 3rem;
+            margin-bottom: 40px;
+        }
+
+        .features-overral {
+            text-align: center;
+            margin-bottom: 30px;
+
+            p {
+                display: inline-block;
+                line-height: 1.5;
+                font-size: 1.5rem;
+                font-weight: 500;
+            }
+        }
+
+        .button-learn-more {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: $base_color;
+            padding: 10px 60px;
+            border: 2px solid $base_color;
+            border-radius: 5px;
+            margin-bottom: 60px;
+        }
+
+        .block-features {
+            margin-bottom: 50px;
+            
+
+            div[class^="col-"] {
+                .block {
+                    padding: 50px 20px;
+                    border: 2px solid $base_color;
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+    
+                    svg {
+                        width: 25px;
+                        height: 25px;
+                        fill: $base_color;
+                        margin-bottom: 30px;
+                    }
+    
+                    h3 {
+                        font-size: 2.2rem;
+                        margin-bottom: 20px;
+                    }
+                }
+
+                &:last-child {
+                    .block {
+                        margin-bottom: 0px;
+                    }       
+                }
+            }
+        }
+    }
+}
+
+
+// Responsive
+
+
+@media screen and (min-width: 992px) {
+    .features-page {
+        padding-top: 100px;
+
+        .container {
+            max-width: 1140px;
+
+            .features-overral {    
+                p {
+                    width: 750px;
+                    font-size: 1.7rem;
+                }
+            }
+
+            .button-learn-more {
+                font-size: 2rem;
+            }
+
+            .block-features {
+                margin-bottom: 100px;
+
+                div[class^="col-"] {
+                    .block {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .features-page {
+        .container {
+            .block-features {
+                div[class^="col-"] {
+                    display: flex;
+                    justify-content: center;
+
+                    .block {
+                        width: 350px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .features-page {
+        .container {
+            max-width: 1360px;
+
+            .block-features {
+                div[class^="col-"] {
+                    .block {
+                        width: 400px;
+                    }
+                }
+            }
+        }
+    }
+}
