@@ -10,8 +10,11 @@ export const generateMetadata = async ({ params }) => {
     const { mindmapId } = params;
     const mindmap = await fetchMindmap(mindmapId);
 
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001";
+
     if (mindmap === "error" || !mindmap) {
         return {
+            metadataBase: new URL(siteUrl),
             title: "Mindmap không tồn tại",
             description: "Bản đồ tư duy này không tồn tại hoặc đã bị xóa."
         };
@@ -23,16 +26,20 @@ export const generateMetadata = async ({ params }) => {
     // Nếu là private thì không chia sẻ dữ liệu meta ra ngoài
     const title = isPublic ? (mindmap.metadata?.title || mindmap.name || "Mindmap không có tên") : "Mindmap Bảo Mật";
     const description = isPublic ? (mindmap.metadata?.description || mindmap.desc || "Chưa có mô tả") : "Bản đồ tư duy này đang được đặt ở chế độ riêng tư.";
-    const defaultImage = "https://mindmap-project-seven.vercel.app/_next/static/media/so-do-tu-duy.913b15fe.webp";
+    
+    // Ảnh default nếu không có ảnh cụ thể
+    const defaultImage = "/_next/static/media/so-do-tu-duy.913b15fe.webp";
     const image = isPublic ? (mindmap.metadata?.image || defaultImage) : defaultImage;
 
     return {
+        metadataBase: new URL(siteUrl),
         title: title,
         description: description,
         openGraph: {
             title: title,
             description: description,
             type: "website",
+            url: `/my-mindmap/${mindmapId}`,
             images: [
                 {
                     url: image,

@@ -19,7 +19,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="img-hero">
-                    <Image src={ img_hero } />
+                    <Image src={ img_hero } alt="Mindmap Flow Hero" priority />
                 </div>
 
                 <div className="advantages">

@@ -1,91 +1,67 @@
 {
   "mindmap": [
     {
-      "id": "2e80c1eb-6e01-4fa8-a6d5-384f8e0e0ee9",
-      "name": "Mindmap không có tênMindmap Demo Jetski",
-      "desc": "Chưa có mô tả",
+      "id": "a3cba688-6d52-4764-b7a6-b79eeb011ca4",
+      "name": "Learn NodeJS",
+      "desc": "Beginning learn NodeJS",
       "nodes": [
         {
           "width": 260,
           "height": 50,
           "id": "root",
           "data": {
-            "label": "My Mindmap"
+            "label": "Learn NodeJS"
           },
           "position": {
-            "x": -98.33823447003643,
-            "y": -100.83835907520685
+            "x": 0,
+            "y": 0
           },
           "type": "nodeCustomFirst",
           "deletable": false,
           "selected": false,
+          "dragging": false,
           "positionAbsolute": {
-            "x": -98.33823447003643,
-            "y": -100.83835907520685
-          },
-          "dragging": false
+            "x": 0,
+            "y": 0
+          }
         },
         {
           "width": 260,
           "height": 50,
-          "id": "mE4yfVNP8xNfTgBUhnJuz",
+          "id": "sqfMeVHvKmDKMHD0LHMvi",
           "position": {
-            "x": -354.8597911645187,
-            "y": 1.3696113320594776
+            "x": -175.33333333333334,
+            "y": 130.86666361490884
           },
           "deletable": true,
           "data": {
-            "label": "New Node"
+            "label": "Learn Express.js"
           },
           "type": "nodeCustom",
           "selected": false,
+          "dragging": false,
           "positionAbsolute": {
-            "x": -354.8597911645187,
-            "y": 1.3696113320594776
-          },
-          "dragging": false
-        },
-        {
-          "width": 260,
-          "height": 50,
-          "id": "gDfo-163dr-J-4vPZqWb7",
-          "position": {
-            "x": -415.69615655699886,
-            "y": 151.3770876422845
-          },
-          "deletable": true,
-          "data": {
-            "label": "New Node"
-          },
-          "type": "nodeCustom",
-          "positionAbsolute": {
-            "x": -415.69615655699886,
-            "y": 151.3770876422845
+            "x": -175.33333333333334,
+            "y": 130.86666361490884
           }
         }
       ],
       "edges": [
         {
-          "id": "UyPwfv1o41U-zJQJVAd9S",
+          "id": "Ei4LG0jsMTnI31ZRnGq-n",
           "source": "root",
-          "target": "mE4yfVNP8xNfTgBUhnJuz",
-          "type": "edgeCustom"
-        },
-        {
-          "id": "4-6EewKkjXHh1DDrimSc-",
-          "source": "mE4yfVNP8xNfTgBUhnJuz",
-          "target": "gDfo-163dr-J-4vPZqWb7",
+          "target": "sqfMeVHvKmDKMHD0LHMvi",
           "type": "edgeCustom"
         }
       ],
       "metadata": {
         "image": "https://mindmap-project-seven.vercel.app/_next/static/media/so-do-tu-duy.913b15fe.webp",
-        "title": "Mindmap không có tênMindmap Demo Jetski",
-        "description": "Chưa có mô tả"
+        "title": "Learn NodeJS",
+        "description": "Beginning learn NodeJS"
       },
-      "isAccessible": true,
+      "isAccessible": false,
       "email": "nguyentiendatg2003@gmail.com",
-      "created_at": "2026/04/05 09:09:06"
+      "created_at": "2026/04/05 21:17:28"
     }
   ]
 }

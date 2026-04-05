@@ -46,7 +46,7 @@ export default function MindmapGrid({ session, mindmapList }) {
             <div className="empty-state">
                 <div className="empty-icon">📝</div>
                 <h3>Chưa có Mindmap nào</h3>
-                <p>Bạn chưa tạo mindmap nào cả. Bấm "Thêm mới" để bắt đầu nhé!</p>
+                <p>Bạn chưa tạo mindmap nào cả. Bấm &quot;Thêm mới&quot; để bắt đầu nhé!</p>
             </div>
         )
     }

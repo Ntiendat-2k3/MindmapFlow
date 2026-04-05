@@ -14,8 +14,9 @@ function ShareBox({ session, mindmap, draftTitle, draftDesc }) {
 
   // link share
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setFullUrl(`${window.location.origin}/my-mindmap/${mindmap.id}`);
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (typeof window !== "undefined" ? window.location.origin : "");
+    if (siteUrl) {
+      setFullUrl(`${siteUrl}/my-mindmap/${mindmap.id}`);
     }
   }, [mindmap.id]);
 
