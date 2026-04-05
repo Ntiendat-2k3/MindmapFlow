@@ -2,74 +2,117 @@
 
 .home-page {
     background-color: $base_light_color;
+    min-height: calc(100vh - 80px); /* Account for navbar */
+    padding-bottom: 60px;
 
     .container {
+        /* Hero Section */
         .heading-hero {
-            font-size: 2.4rem;
-            font-weight: 700;
+            font-size: 2.8rem;
+            font-weight: 800;
             text-align: center;
-            padding: 50px 20px 0px 20px;
-            margin-bottom: 40px; 
+            padding: 80px 20px 0px 20px;
+            margin-bottom: 30px; 
+            color: $dark_text;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
         }
     
         .button-hero {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
     
             a {
-                padding: 15px 30px;
+                display: inline-block;
+                padding: 16px 36px;
                 border-radius: 99px;
-                font-weight: 500;
-                color: white;
+                font-weight: 600;
+                font-size: 1.1rem;
+                color: $white;
                 background-color: $base_color;
+                box-shadow: $shadow-md;
+                transition: $transition-main;
+                text-decoration: none;
+
+                &:hover {
+                    background-color: $base_color_hover;
+                    box-shadow: $shadow-hover;
+                    transform: translateY(-2px);
+                }
             }
         }
 
         .img-hero {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 100px;
 
             img {
-                max-width: 670px;
+                max-width: 100%;
+                width: 800px;
+                border-radius: 16px;
+                box-shadow: $shadow-lg;
+                transition: $transition-main;
+                
+                &:hover {
+                    transform: scale(1.02);
+                    box-shadow: $shadow-hover;
+                }
             }
         }
 
+        /* Advantages / Features Section */
         .advantages {
             .advantage {
                 margin-bottom: 60px;
+                padding: 30px;
+                border-radius: 16px;
+                background: $white;
+                box-shadow: $shadow-sm;
+                transition: $transition-main;
+                border: 1px solid $border_light;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+
+                &:hover {
+                    transform: translateY(-8px);
+                    box-shadow: $shadow-hover;
+                    border-color: $base_color;
+                }
 
                 .advantage-heading {
-                    position: relative;
-                    font-size: 1.8rem;
-                    font-weight: 600;
-                    color: rgb(45, 45, 45);
-                    text-transform: uppercase;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: $dark_text;
                     margin-bottom: 20px;
                     text-align: center;
+                    position: relative;
 
-                    &::before {
+                    &::after {
                         content: "";
-                        position: absolute;
-                        top: -20px;
-                        left: 50%;
-                        width: 100px;
-                        height: 2px;
-                        background-color: rgb(211, 211, 211);
-                        translate: -50% 0%;
-                        z-index: 0;
+                        display: block;
+                        width: 40px;
+                        height: 3px;
+                        background-color: $base_color;
+                        border-radius: 2px;
+                        margin: 15px auto 0;
                     }
+                    
+                    /* Removing old pseudo element */
+                    &::before { display: none; }
                 }
 
                 .advantage-desc {
                     display: flex;
                     justify-content: center;
                     text-align: center;
+                    flex-grow: 1;
 
                     p {
-                        max-width: 450px;
-                        color: rgb(126, 126, 126);
-                        font-size: 1.5rem;
-                        line-height: 1.5;
+                        color: $grey_text_nav;
+                        font-size: 1.1rem;
+                        line-height: 1.6;
+                        margin: 0;
                     }
                 }
             }
@@ -77,23 +120,27 @@
     }
 }
 
-
 // Responsive
-
-
 @media screen and (min-width: 992px) {
     .home-page {
         .container {
             max-width: 1140px;
 
             .heading-hero {
-                font-size: 3rem;
+                font-size: 4rem;
                 padding-top: 100px;
                 margin-bottom: 40px;
             }
 
             .img-hero {
-                margin-bottom: 80px;
+                margin-bottom: 120px;
+            }
+            
+            .advantages {
+                .row {
+                    display: flex;
+                    align-items: stretch;
+                }
             }
         }
     }

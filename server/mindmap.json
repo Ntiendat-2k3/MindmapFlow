@@ -1,55 +1,57 @@
 {
   "mindmap": [
     {
-      "id": "c741cff7-42ce-432a-b150-01982762265f",
-      "name": "hehe",
-      "desc": "hehe",
+      "id": "2e80c1eb-6e01-4fa8-a6d5-384f8e0e0ee9",
+      "name": "Mindmap không có tênMindmap Demo Jetski",
+      "desc": "Chưa có mô tả",
       "nodes": [
         {
-          "width": 250,
-          "height": 60,
+          "width": 260,
+          "height": 50,
           "id": "root",
           "data": {
-            "label": "Learn Nextjs"
+            "label": "My Mindmap"
           },
           "position": {
-            "x": 0,
-            "y": 0
+            "x": -98.33823447003643,
+            "y": -100.83835907520685
           },
           "type": "nodeCustomFirst",
           "deletable": false,
+          "selected": false,
           "positionAbsolute": {
-            "x": 0,
-            "y": 0
+            "x": -98.33823447003643,
+            "y": -100.83835907520685
           },
-          "selected": true,
           "dragging": false
         },
         {
-          "width": 250,
-          "height": 60,
-          "id": "WwIiC3SZPZ8kYCMF85ukT",
+          "width": 260,
+          "height": 50,
+          "id": "mE4yfVNP8xNfTgBUhnJuz",
           "position": {
-            "x": -250.66666666666666,
-            "y": 142.73332722981772
+            "x": -354.8597911645187,
+            "y": 1.3696113320594776
           },
           "deletable": true,
           "data": {
             "label": "New Node"
           },
           "type": "nodeCustom",
+          "selected": false,
           "positionAbsolute": {
-            "x": -250.66666666666666,
-            "y": 142.73332722981772
-          }
+            "x": -354.8597911645187,
+            "y": 1.3696113320594776
+          },
+          "dragging": false
         },
         {
-          "width": 250,
-          "height": 60,
-          "id": "fUm80ipCu9wLPVBTzPEhT",
+          "width": 260,
+          "height": 50,
+          "id": "gDfo-163dr-J-4vPZqWb7",
           "position": {
-            "x": 226.66666666666666,
-            "y": 154.06666056315103
+            "x": -415.69615655699886,
+            "y": 151.3770876422845
           },
           "deletable": true,
           "data": {
@@ -57,33 +59,33 @@
           },
           "type": "nodeCustom",
           "positionAbsolute": {
-            "x": 226.66666666666666,
-            "y": 154.06666056315103
+            "x": -415.69615655699886,
+            "y": 151.3770876422845
           }
         }
       ],
       "edges": [
         {
-          "id": "U4Vw6hu_5N8pdtzBbmMGY",
+          "id": "UyPwfv1o41U-zJQJVAd9S",
           "source": "root",
-          "target": "WwIiC3SZPZ8kYCMF85ukT",
+          "target": "mE4yfVNP8xNfTgBUhnJuz",
           "type": "edgeCustom"
         },
         {
-          "id": "5-c4ynnsAEYCmpJxV2D3a",
-          "source": "root",
-          "target": "fUm80ipCu9wLPVBTzPEhT",
+          "id": "4-6EewKkjXHh1DDrimSc-",
+          "source": "mE4yfVNP8xNfTgBUhnJuz",
+          "target": "gDfo-163dr-J-4vPZqWb7",
           "type": "edgeCustom"
         }
       ],
       "metadata": {
         "image": "https://mindmap-project-seven.vercel.app/_next/static/media/so-do-tu-duy.913b15fe.webp",
-        "title": "hehe",
-        "description": "hehe"
+        "title": "Mindmap không có tênMindmap Demo Jetski",
+        "description": "Chưa có mô tả"
       },
       "isAccessible": true,
       "email": "nguyentiendatg2003@gmail.com",
-      "created_at": "2026/01/28 01:08:42"
+      "created_at": "2026/04/05 09:09:06"
     }
   ]
 }

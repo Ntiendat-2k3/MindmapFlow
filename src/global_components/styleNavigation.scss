@@ -79,31 +79,29 @@
                                         padding: 10px 20px;
                                         border-radius: 5px;
                                         color: $grey_text_nav;
-                                        transition-property: background-color, color;
-                                        transition: 0.2s linear;
+                                        transition: $transition-main;
     
                                         &.active {
-                                            background-color: $base_color;
-                                            color: white;
+                                            font-weight: 600;
+                                            color: $base_color;
 
                                             &:hover {
-                                                background-color: $base_color;
-                                                color: white;
+                                                background-color: transparent;
+                                                color: $base_color;
                                             }
                                         }
                                         
                                         &:active {
-                                            background-color: $base_color;
-                                            color: white;
+                                            color: $base_color;
                                         }
     
                                         &:focus {
-                                            background-color: $base_color;
-                                            color: white;
+                                            color: $base_color;
                                         }
     
                                         &:hover {
-                                            background-color: rgba(128, 128, 128, 0.1);
+                                            color: $base_color;
+                                            background-color: transparent;
                                         }
                                     }
                                 }
@@ -117,28 +115,41 @@
                                 .button-mindmap,
                                 .button-logout,
                                 .button-login {
-                                    font-size: 1.4rem;
-                                    font-weight: 500;
-                                    outline: 1px solid $base_color;
-                                    border-radius: 5px;
-                                    padding: 10px 20px;
+                                    font-size: 1.1rem;
+                                    font-weight: 600;
+                                    border-radius: 8px;
+                                    padding: 10px 24px;
                                     background-color: transparent;
-                                    color: $grey_text_nav;
+                                    color: $dark_text;
+                                    border: 1px solid $border_light;
                                     margin-bottom: 20px;
                                     cursor: pointer;
-                                    transition-property: background-color, color;
-                                    transition: 0.2s linear;
+                                    transition: $transition-main;
     
                                     &:hover {
                                         background-color: $base_color;
-                                        color: white;
+                                        color: $white;
+                                        border-color: $base_color;
+                                        transform: translateY(-2px);
+                                        box-shadow: $shadow-sm;
+                                    }
+                                }
+
+                                .button-mindmap {
+                                    background-color: $base_color;
+                                    color: $white;
+                                    border-color: $base_color;
+
+                                    &:hover {
+                                        background-color: $base_color_hover;
+                                        box-shadow: $shadow-md;
                                     }
                                 }
     
                                 p {
-                                    font-size: 1.4rem;
+                                    font-size: 1.1rem;
                                     font-weight: 500;
-                                    color: $base_color;
+                                    color: $dark_text;
                                     margin-bottom: 20px;
                                 }
                             }

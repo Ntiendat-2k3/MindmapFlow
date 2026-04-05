@@ -3,7 +3,7 @@ import { fetchMindmapList } from "@/app/api/actions/handleServerSide";
 
 import options from "@/app/api/auth/[...nextauth]/options";
 import ButtonAddMindmap from "./ButtonAddMindmap";
-import TableMindmapList from "./TableMindmapList";
+import MindmapGrid from "./MindmapGrid";
 
 import "./style.scss";
 
@@ -19,10 +19,12 @@ export default async function MyMindmapPage() {
   return (
     <main className="my-mindmap-page">
       <div className="container">
-        <h1 className="my-mindmap-page-heading">Mindmap của tôi</h1>
+        <div className="page-header">
+            <h1 className="my-mindmap-page-heading">Mindmap của tôi</h1>
+            <ButtonAddMindmap session={session} />
+        </div>
 
-        <ButtonAddMindmap session={session} />
-        <TableMindmapList session={session} mindmapList={mindmapList} />
+        <MindmapGrid session={session} mindmapList={mindmapList} />
       </div>
     </main>
   );

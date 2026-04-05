@@ -2,65 +2,90 @@
 
 .features-page {
     padding-top: 50px;
+    background-color: var(--base_light_color, #f8fafc);
+    min-height: calc(100vh - 80px);
 
     .container {
         text-align: center;
 
         .features-heading {
             font-size: 3rem;
-            margin-bottom: 40px;
+            margin-bottom: 24px;
+            font-weight: 800;
+            color: $dark_text;
         }
 
         .features-overral {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
 
             p {
                 display: inline-block;
-                line-height: 1.5;
-                font-size: 1.5rem;
+                line-height: 1.6;
+                font-size: 1.2rem;
                 font-weight: 500;
+                color: $grey_text;
             }
         }
 
         .button-learn-more {
-            font-size: 1.7rem;
+            display: inline-block;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: $base_color;
-            padding: 10px 60px;
-            border: 2px solid $base_color;
-            border-radius: 5px;
+            color: $white;
+            background-color: $base_color;
+            padding: 14px 48px;
+            border-radius: 8px;
             margin-bottom: 60px;
+            box-shadow: $shadow-sm;
+            transition: $transition-main;
+
+            &:hover {
+                background-color: $base_color_hover;
+                transform: translateY(-2px);
+                box-shadow: $shadow-md;
+            }
         }
 
         .block-features {
             margin-bottom: 50px;
-            
 
             div[class^="col-"] {
                 .block {
-                    padding: 50px 20px;
-                    border: 2px solid $base_color;
-                    border-radius: 10px;
-                    margin-bottom: 20px;
+                    padding: 40px 30px;
+                    background-color: $white;
+                    border: 1px solid $border_light;
+                    border-radius: 16px;
+                    margin-bottom: 24px;
+                    box-shadow: $shadow-sm;
+                    transition: $transition-main;
+                    height: 100%;
     
                     svg {
-                        width: 25px;
-                        height: 25px;
-                        fill: $base_color;
-                        margin-bottom: 30px;
+                        width: 48px;
+                        height: 48px;
+                        color: $base_color;
+                        margin-bottom: 24px;
                     }
     
                     h3 {
-                        font-size: 2.2rem;
-                        margin-bottom: 20px;
+                        font-size: 1.6rem;
+                        font-weight: 700;
+                        margin-bottom: 16px;
+                        color: $dark_text;
                     }
-                }
 
-                &:last-child {
-                    .block {
-                        margin-bottom: 0px;
-                    }       
+                    p {
+                        font-size: 1.1rem;
+                        line-height: 1.6;
+                        color: $grey_text_nav;
+                    }
+
+                    &:hover {
+                        transform: translateY(-8px);
+                        box-shadow: $shadow-lg;
+                        border-color: rgba($base_color, 0.3);
+                    }
                 }
             }
         }
@@ -73,7 +98,7 @@
 
 @media screen and (min-width: 992px) {
     .features-page {
-        padding-top: 100px;
+        padding-top: 80px;
 
         .container {
             max-width: 1140px;
@@ -81,22 +106,16 @@
             .features-overral {    
                 p {
                     width: 750px;
-                    font-size: 1.7rem;
+                    font-size: 1.25rem;
                 }
             }
 
             .button-learn-more {
-                font-size: 2rem;
+                font-size: 1.25rem;
             }
 
             .block-features {
                 margin-bottom: 100px;
-
-                div[class^="col-"] {
-                    .block {
-                        margin-bottom: 0px;
-                    }
-                }
             }
         }
     }
@@ -109,10 +128,6 @@
                 div[class^="col-"] {
                     display: flex;
                     justify-content: center;
-
-                    .block {
-                        width: 350px;
-                    }
                 }
             }
         }
@@ -123,14 +138,6 @@
     .features-page {
         .container {
             max-width: 1360px;
-
-            .block-features {
-                div[class^="col-"] {
-                    .block {
-                        width: 400px;
-                    }
-                }
-            }
         }
     }
 }

@@ -123,7 +123,7 @@ function Flow({ mindmap, session }) {
             {/* ✅ MindmapInfo đã memo + tự get nodes/edges khi Save -> không rerender theo drag */}
             <MindmapInfo mindmap={mindmap} session={session} />
 
-            <div style={{ width: "100vw", height: "70vh" }}>
+            <div className="flow-container">
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
@@ -153,11 +153,12 @@ function Flow({ mindmap, session }) {
                             nodeStrokeWidth={5}
                             nodeBorderRadius={10}
                             zoomStep={1}
-                            nodeColor="#FFCC00"
+                            nodeColor="#4f46e5"
                             position="top-left"
+                            maskColor="rgba(248, 250, 252, 0.7)"
                         />
                     )}
-                    <Background variant="dots" color="#EBE3D5" gap="30" size="4" />
+                    <Background variant="dots" color="#94a3b8" gap="30" size="3" />
                 </ReactFlow>
             </div>
 

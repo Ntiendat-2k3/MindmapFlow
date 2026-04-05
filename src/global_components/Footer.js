@@ -11,102 +11,53 @@ export default function Footer() {
                         <div className="col-12 col-xl-8">
                             {/* Begin second row */}
                             <div className="row">
-                                <div className="col-12 col-lg-3">
+                                <div className="col-12 col-lg-4">
                                     <ul className='footer-list'>
                                         <li className="footer-item">
-                                            <h3>Features</h3>
+                                            <h3>Sản phẩm</h3>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Cool stuff</Link>
+                                            <Link href="/features">Tính năng</Link>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Random feature</Link>
+                                            <Link href="/my-mindmap">Tạo sơ đồ</Link>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Team feature</Link>
-                                        </li>
-
-                                        <li className="footer-item">
-                                            <Link href="">Stuff for developers</Link>
-                                        </li>
-
-                                        <li className="footer-item">
-                                            <Link href="">Another one</Link>
-                                        </li>
-
-                                        <li className="footer-item">
-                                            <Link href="">Last time</Link>
+                                            <Link href="/">Mẫu sơ đồ</Link>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div className="col-12 col-lg-3">
+                                <div className="col-12 col-lg-4">
                                     <ul className='footer-list'>
                                         <li className="footer-item">
-                                            <h3>Resources</h3>
+                                            <h3>Tài nguyên</h3>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Resource</Link>
+                                            <Link href="/">Tài nguyên thiết kế</Link>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Resource name</Link>
+                                            <Link href="/">Blog & Kiến thức</Link>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Another resource</Link>
-                                        </li>
-
-                                        <li className="footer-item">
-                                            <Link href="">Final resource</Link>
+                                            <Link href="/">Cộng đồng</Link>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div className="col-12 col-lg-3">
+                                <div className="col-12 col-lg-4">
                                     <ul className='footer-list'>
                                         <li className="footer-item">
-                                            <h3>About</h3>
+                                            <h3>Trợ giúp</h3>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Team</Link>
+                                            <Link href="/contact">Hỗ trợ khách hàng</Link>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Locations</Link>
+                                            <Link href="/">Điều khoản dịch vụ</Link>
                                         </li>
-
                                         <li className="footer-item">
-                                            <Link href="">Privacy</Link>
-                                        </li>
-
-                                        <li className="footer-item">
-                                            <Link href="">Terms</Link>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="col-12 col-lg-3">
-                                    <ul className='footer-list'>
-                                        <li className="footer-item">
-                                            <h3>Help</h3>
-                                        </li>
-
-                                        <li className="footer-item">
-                                            <Link href="">Support</Link>
-                                        </li>
-
-                                        <li className="footer-item">
-                                            <Link href="">Help Center</Link>
-                                        </li>
-
-                                        <li className="footer-item">
-                                            <Link href="">Contact Us</Link>
+                                            <Link href="/">Cam kết bảo mật</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -116,17 +67,17 @@ export default function Footer() {
 
                         <div className="col-12 col-xl-4">
                             <div className="footer-social-network">
-                                <h3>Stay connected</h3>
+                                <h3>Kết nối với chúng tôi</h3>
 
                                 <ul className='footer-social-list'>
                                     <li className="footer-social-item">
-                                        <a href="">Facebook</a>
+                                        <a href="/">Facebook</a>
                                     </li>
                                     <li className="footer-social-item">
-                                        <a href="">Twitter</a>
+                                        <a href="/">Twitter</a>
                                     </li>
                                     <li className="footer-social-item">
-                                        <a href="">Google</a>
+                                        <a href="/">LinkedIn</a>
                                     </li>
                                 </ul>
                             </div>
@@ -137,29 +88,22 @@ export default function Footer() {
     
                 <div className="footer-bottom">
                     {/* Begin first row */}
-                    <div className="row">
+                    <div className="row align-items-center">
                         <div className="col-12 col-lg-8">
                             {/* Begin second row */}
                             <div className="row">
-                                <div className="col-12 col-lg-4">
+                                <div className="col-12 col-lg-6">
                                     <div className="footer-info">
-                                        <h3>FWR</h3>
+                                        <h3>MindmapFlow</h3>
+                                        <p>Giải pháp lập bản đồ tư duy trực quan, giúp bạn phát triển ý tưởng và quản lý công việc hiệu quả.</p>
                                     </div>
                                 </div>
 
-                                <div className="col-12 col-lg-4">
+                                <div className="col-12 col-lg-6">
                                     <div className="footer-info">
-                                        <h3>Address</h3>
-                                        <p>123 6th St.</p>
-                                        <p>Melbourne, FL 32904</p>
-                                    </div>
-                                </div>
-
-                                <div className="col-12 col-lg-4">
-                                    <div className="footer-info">
-                                        <h3>Free Resources</h3>
-                                        <p>Use our HTML blocks for <span>FREE</span>.</p>
-                                        <p>All are MIT License</p>
+                                        <h3>Bản quyền</h3>
+                                        <p>&copy; 2026 MindmapFlow. Nền tảng miễn phí.</p>
+                                        <p>Giấy phép hoạt động: MIT License.</p>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +112,7 @@ export default function Footer() {
 
                         <div className="col-12 col-lg-4">
                             <div className='button-start'>
-                                <Link href="" >Get Started</Link>
+                                <Link href="/my-mindmap">Bắt đầu ngay</Link>
                             </div>
                         </div>
                     </div>

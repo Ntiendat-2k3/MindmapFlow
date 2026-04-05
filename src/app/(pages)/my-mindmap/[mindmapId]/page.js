@@ -7,16 +7,49 @@ import { fetchMindmap } from "@/app/api/actions/handleServerSide";
 import options from "@/app/api/auth/[...nextauth]/options";
 
 export const generateMetadata = async ({ params }) => {
-    const { mindmapId } = params
+    const { mindmapId } = params;
     const mindmap = await fetchMindmap(mindmapId);
 
-    return {
-        title: mindmap.isAccessible ? mindmap.metadata.title : mindmap.name,
-        description: mindmap.metadata.description,
-        openGraph: {
-            images: [mindmap.metadata.image],
-        }
+    if (mindmap === "error" || !mindmap) {
+        return {
+            title: "Mindmap không tồn tại",
+            description: "Bản đồ tư duy này không tồn tại hoặc đã bị xóa."
+        };
     }
+
+    // Lấy thông tin an toàn, có fallback đầy đủ
+    const isPublic = mindmap.isAccessible;
+    
+    // Nếu là private thì không chia sẻ dữ liệu meta ra ngoài
+    const title = isPublic ? (mindmap.metadata?.title || mindmap.name || "Mindmap không có tên") : "Mindmap Bảo Mật";
+    const description = isPublic ? (mindmap.metadata?.description || mindmap.desc || "Chưa có mô tả") : "Bản đồ tư duy này đang được đặt ở chế độ riêng tư.";
+    const defaultImage = "https://mindmap-project-seven.vercel.app/_next/static/media/so-do-tu-duy.913b15fe.webp";
+    const image = isPublic ? (mindmap.metadata?.image || defaultImage) : defaultImage;
+
+    return {
+        title: title,
+        description: description,
+        openGraph: {
+            title: title,
+            description: description,
+            type: "website",
+            images: [
+                {
+                    url: image,
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                }
+            ],
+            siteName: "MindmapFlow",
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: title,
+            description: description,
+            images: [image],
+        }
+    };
 }
 
 function isObject(value) {

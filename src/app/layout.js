@@ -3,8 +3,7 @@ import Navigation from "@/global_components/Navigation"
 import Footer from "@/global_components/Footer"
 import AuthProvider from './context/AuthProvider'
 
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { Toaster } from 'sonner'
 
 export const metadata = {
   title: 'Create Next App',
@@ -21,7 +20,7 @@ export default function RootLayout({ children }) {
                     <Footer />
                 </AuthProvider>
 
-                <ToastContainer />
+                <Toaster richColors position="top-right" />
             </body>
         </html>
     )

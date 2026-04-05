@@ -4,16 +4,7 @@ import { stripHtml } from "@/app/utils/methods";
 import { useEffect, useRef, useState, useCallback, memo } from "react";
 import { Handle, Position } from "reactflow";
 
-const cssHandle = {
-    position: "absolute",
-    padding: "6px 20px",
-    borderRadius: "3px",
-    backgroundColor: "rgb(79,70,229)",
-    outline: "1px solid white",
-    bottom: "0px",
-    translate: "0px 50%",
-    zIndex: 2,
-};
+
 
 function NodeCustomFirst({ id, data, isConnectable, selected }) {
     const overlayRef = useRef(null);
@@ -63,12 +54,8 @@ function NodeCustomFirst({ id, data, isConnectable, selected }) {
 
     return (
         <div
-            className="node-custom"
+            className={`node-custom ${selected ? "selected" : ""}`}
             onDoubleClick={handleDoubleClick}
-            style={{
-                backgroundColor: selected ? "rgb(191,195,74)" : "rgb(139,195,74)",
-                zIndex: selected ? "-1" : "1",
-            }}
         >
             <div className="main-content">
                 <div ref={overlayRef} className="overlay"></div>
@@ -86,7 +73,7 @@ function NodeCustomFirst({ id, data, isConnectable, selected }) {
                 type="source"
                 position={Position.Bottom}
                 isConnectable={isConnectable}
-                style={cssHandle}
+                className="css-handle"
             />
         </div>
     );

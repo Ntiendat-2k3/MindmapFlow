@@ -28,7 +28,7 @@ export default function HomePage() {
                             <div className="advantage">
                                 <h3 className="advantage-heading">Dễ sử dụng</h3>
                                 <div className="advantage-desc">
-                                    <p>FWR blocks bring in an air of fresh design with their creative layouts and blocks, which are easily customizable</p>
+                                    <p>Giao diện trực quan và thao tác kéo thả mượt mà giúp bạn tạo bản đồ tư duy ngay lập tức mà không cần học cách sử dụng.</p>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@ export default function HomePage() {
                             <div className="advantage">
                                 <h3 className="advantage-heading">Không giới hạn</h3>
                                 <div className="advantage-desc">
-                                    <p>FWR blocks are the cleanest pieces of HTML blocks, which are built with utmost care to quality and usability.</p>
+                                    <p>Thỏa sức sáng tạo với không gian làm việc vô hạn. Thêm vô số nhánh, nút và tái cấu trúc ý tưởng một cách tự do nhất.</p>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@ export default function HomePage() {
                             <div className="advantage">
                                 <h3 className="advantage-heading">Quản lý và chia sẻ</h3>
                                 <div className="advantage-desc">
-                                    <p>FWR blocks is a perfect tool for designers, developers and agencies looking to create stunning websites in no time.</p>
+                                    <p>Dễ dàng lưu trữ toàn bộ bản đồ trên đám mây, cho phép bạn chia sẻ với đồng nghiệp và truy cập mọi lúc mọi nơi.</p>
                                 </div>
                             </div>
                         </div>

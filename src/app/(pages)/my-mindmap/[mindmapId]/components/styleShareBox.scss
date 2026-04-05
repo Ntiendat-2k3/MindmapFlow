@@ -7,20 +7,33 @@
   .share-box-structure {
     scale: 1;
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 #toggle-share-private:checked ~ .share-box {
   .share-box-structure {
     .show-private {
-      background-color: $light_purple_button;
+      background-color: $base_color;
       color: white;
-      border-color: $light_purple_button;
+      border-color: $base_color;
+      box-shadow: 0 4px 10px rgba($base_color, 0.2);
+    }
+    .show-public {
+      background-color: transparent;
+      color: $grey_text;
+      border-color: transparent;
     }
 
     .share-box-body {
       .body-private {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        opacity: 0;
+        animation: fadeIn 0.3s forwards;
       }
     }
   }
@@ -29,17 +42,29 @@
 #toggle-share-public:checked ~ .share-box {
   .share-box-structure {
     .show-public {
-      background-color: $light_purple_button;
+      background-color: $base_color;
       color: white;
-      border-color: $light_purple_button;
+      border-color: $base_color;
+      box-shadow: 0 4px 10px rgba($base_color, 0.2);
+    }
+    .show-private {
+      background-color: transparent;
+      color: $grey_text;
+      border-color: transparent;
     }
 
     .share-box-body {
       .body-public {
         display: block;
+        opacity: 0;
+        animation: fadeIn 0.3s forwards;
       }
     }
   }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
 .share-box {
@@ -47,64 +72,71 @@
   inset: 0;
   visibility: hidden;
   opacity: 0;
-  z-index: 999;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .overlay {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(54, 54, 54, 0.4);
+    background-color: rgba(15, 23, 42, 0.6); // Modern slate dark overlay
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     cursor: pointer;
     z-index: 1;
   }
 
   .share-box-structure {
-    scale: 0.98;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: min(720px, calc(100% - 24px));
-    translate: -50% -50%;
-    background-color: white;
-    border-radius: 12px;
-    padding: 28px;
+    position: relative;
+    width: min(600px, calc(100% - 32px));
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 32px;
     z-index: 2;
-    transition: 0.22s ease;
-    transition-property: scale, opacity;
+    scale: 0.95;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0,0,0,0.05);
 
     .share-box-header {
       display: flex;
-      gap: 12px;
+      gap: 8px;
       width: 100%;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
+      background: $border_light;
+      padding: 6px;
+      border-radius: 14px;
 
       label {
         flex: 1;
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: rgb(74, 74, 74);
-        padding: 12px 18px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 10px 16px;
         border-radius: 10px;
         text-align: center;
         cursor: pointer;
-        border: 2px solid rgb(63, 44, 34);
-        transition: 0.2s ease;
+        transition: all 0.2s ease;
       }
     }
 
     .share-box-body {
       width: 100%;
-      margin-bottom: 18px;
+      margin-bottom: 32px;
 
       .body-private {
         display: none;
 
         p {
           text-align: center;
-          font-size: 1.7rem;
-          font-weight: 600;
-          padding: 10px 0;
+          font-size: 1.6rem;
+          color: $grey_text;
+          line-height: 1.6;
+          max-width: 80%;
+          margin: 0 auto;
         }
       }
 
@@ -112,56 +144,72 @@
         display: none;
 
         .group {
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 14px;
+          margin-bottom: 20px;
 
           label {
-            width: fit-content;
-            font-weight: 700;
+            display: block;
+            font-weight: 600;
+            color: $dark_text;
             margin-bottom: 8px;
-            font-size: 1.45rem;
+            font-size: 1.4rem;
           }
 
           .row-inline {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
 
             input {
               flex: 1;
+              color: $base_color; // Highlight link color
             }
 
             .btn-copy {
-              border: 2px solid rgb(63, 44, 34);
-              background: white;
-              font-weight: 700;
-              padding: 10px 14px;
-              border-radius: 10px;
+              background: $base_light_color;
+              color: $dark_text;
+              font-weight: 600;
+              padding: 12px 20px;
+              border-radius: 12px;
               cursor: pointer;
               white-space: nowrap;
+              border: none;
+              font-size: 1.45rem;
+              transition: all 0.2s ease;
+
+              &:hover {
+                background: darken($base_light_color, 5%);
+                transform: translateY(-1px);
+              }
             }
           }
 
           input,
           textarea {
-            padding: 10px 14px;
-            border-radius: 10px;
-            background-color: rgb(249, 250, 251);
-            transition: background-color 0.15s ease;
-            font-size: 1.45rem;
-            font-weight: 600;
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background-color: #f9fafb;
+            color: $dark_text;
+            font-size: 1.5rem;
             border: 1px solid transparent;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background-color: #f3f4f6;
+            }
 
             &:focus {
-              background-color: transparent;
-              outline: 2px solid rgb(148, 148, 148);
+              background-color: #ffffff;
+              border-color: rgba($base_color, 0.4);
+              box-shadow: 0 0 0 4px rgba($base_color, 0.1);
+              outline: none;
             }
           }
 
           textarea {
-            resize: vertical;
-            min-height: 90px;
+            resize: none;
+            min-height: 100px;
+            line-height: 1.5;
           }
         }
       }
@@ -169,58 +217,76 @@
 
     .share-box-footer {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       width: 100%;
+      border-top: 1px solid $border_light;
+      padding-top: 24px;
 
       label {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: rgb(74, 74, 74);
-        padding: 12px 18px;
-        border-radius: 10px;
-        border: 2px solid rgb(63, 44, 34);
+        flex: 1;
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 14px 24px;
+        border-radius: 12px;
         text-align: center;
         cursor: pointer;
-        user-select: none;
+        transition: all 0.2s ease;
       }
 
-      label:first-child {
-        flex: 0 0 140px;
+      label:first-child { // Đóng
+        background: transparent;
+        color: $grey_text;
+        border: 1px solid $border_light;
+
+        &:hover {
+          background: #f9fafb;
+          color: $dark_text;
+        }
       }
 
-      label:last-child {
-        flex: 1;
+      label:last-child { // Lưu lại
+        background: $base_color;
+        color: white;
+        border: 1px solid transparent;
+        box-shadow: 0 4px 12px rgba($base_color, 0.2);
+
+        &:hover {
+          background: darken($base_color, 5%);
+          transform: translateY(-1px);
+          box-shadow: 0 6px 16px rgba($base_color, 0.3);
+        }
       }
     }
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .share-box {
     .share-box-structure {
-      padding: 18px;
-
-      .share-box-footer {
-        flex-direction: column;
-
-        label:first-child,
-        label:last-child {
-          flex: unset;
-          width: 100%;
-        }
-      }
-
+      padding: 24px 20px;
+      
       .share-box-body {
         .body-public {
           .group {
             .row-inline {
               flex-direction: column;
+              align-items: stretch;
 
               .btn-copy {
                 width: 100%;
+                text-align: center;
               }
             }
           }
+        }
+      }
+
+      .share-box-footer {
+        flex-direction: column-reverse;
+        gap: 12px;
+
+        label {
+          width: 100%;
         }
       }
     }

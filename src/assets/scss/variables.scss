@@ -1,6 +1,16 @@
-$base_color: rgb(79, 70, 229);
-$base_light_color: rgb(224,231,255);
-$purple_button: rgb(107, 33, 168);
-$light_purple_button: rgb(168, 85, 247);
-$grey_text_nav: rgb(75, 85, 99);
-$footer_background: rgb(243, 244, 246);
+$base_color: #4f46e5; // Indigo 600
+$base_color_hover: #4338ca; // Indigo 700
+$base_light_color: #f8fafc; // Slate 50
+$purple_button: #7e22ce; // Purple 700
+$light_purple_button: #a855f7; // Purple 500
+$grey_text_nav: #475569; // Slate 600
+$grey_text: #64748b; // Slate 500
+$dark_text: #0f172a; // Slate 900
+$footer_background: #f1f5f9; // Slate 100
+$white: #ffffff;
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+$shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+$transition-main: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$border_light: #e2e8f0;

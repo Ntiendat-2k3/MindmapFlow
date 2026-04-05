@@ -10,12 +10,12 @@ import "./styleShareBox.scss";
 
 function ShareBox({ session, mindmap, draftTitle, draftDesc }) {
   const router = useRouter();
-  const fullUrl = useRef("");
+  const [fullUrl, setFullUrl] = useState("");
 
   // link share
   useEffect(() => {
     if (typeof window !== "undefined") {
-      fullUrl.current = `${window.location.origin}/my-mindmap/${mindmap.id}`;
+      setFullUrl(`${window.location.origin}/my-mindmap/${mindmap.id}`);
     }
   }, [mindmap.id]);
 
@@ -163,13 +163,13 @@ function ShareBox({ session, mindmap, draftTitle, draftDesc }) {
               <div className="group">
                 <label>Liên kết chia sẻ</label>
                 <div className="row-inline">
-                  <input type="text" value={fullUrl.current} readOnly />
+                  <input type="text" value={fullUrl} readOnly />
                   <button
                     type="button"
                     className="btn-copy"
                     onClick={async () => {
                       try {
-                        await navigator.clipboard.writeText(fullUrl.current);
+                        await navigator.clipboard.writeText(fullUrl);
                         notify("success", "Đã copy liên kết!");
                       } catch {
                         notify("error", "Copy thất bại!");
