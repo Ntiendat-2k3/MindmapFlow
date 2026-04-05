@@ -1,7 +1,9 @@
+import { getBaseUrl } from "@/app/utils/baseUrl";
+
 export const fetchMindmapList = async () => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API}?_sort=created_at&_order=desc`,
+      `${getBaseUrl()}${process.env.NEXT_PUBLIC_API}?_sort=created_at&_order=desc`,
       {
         next: {
           tags: ["get_mindmap_list"],
@@ -17,7 +19,7 @@ export const fetchMindmapList = async () => {
 
 export const fetchMindmap = async (id) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/${id}`, {
+    const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}/${id}`, {
       next: {
         // cache theo từng mindmap để tránh invalidate "all mindmaps" không cần thiết
         tags: [`get_mindmap_${id}`],

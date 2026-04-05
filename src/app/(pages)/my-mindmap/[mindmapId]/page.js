@@ -7,7 +7,7 @@ import { fetchMindmap } from "@/app/api/actions/handleServerSide";
 import options from "@/app/api/auth/[...nextauth]/options";
 
 export const generateMetadata = async ({ params }) => {
-    const { mindmapId } = params;
+    const { mindmapId } = await params;
     const mindmap = await fetchMindmap(mindmapId);
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001";
@@ -68,7 +68,7 @@ function isObject(value) {
 }
 
 export default async function MindmapPage({ params }) {
-    const { mindmapId } = params;
+    const { mindmapId } = await params;
     const session = await getServerSession(options);
     const mindmap = await fetchMindmap(mindmapId);
 

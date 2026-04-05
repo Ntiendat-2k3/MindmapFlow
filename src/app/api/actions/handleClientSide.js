@@ -1,9 +1,10 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
+import { getBaseUrl } from "@/app/utils/baseUrl";
 
 export const fetchAddMindmap = async (body) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}`, {
+  const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -19,7 +20,7 @@ export const fetchAddMindmap = async (body) => {
 };
 
 export const fetchDeleteMindmap = async (id) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/${id}`, {
+  const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}/${id}`, {
     method: "DELETE",
   });
 
@@ -36,7 +37,7 @@ export const fetchDeleteMindmap = async (id) => {
 
 export const fetchSaveMindmap = async (body) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/${body.id}`, {
+    const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}/${body.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

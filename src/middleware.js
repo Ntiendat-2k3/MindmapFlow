@@ -13,8 +13,8 @@ export const middleware = async (req) => {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  // ✅ chặn sớm để khỏi fetch mindmap trong middleware khi chưa login
-  if (pathname.startsWith("/my-mindmap") && !jwt) {
+  // ✅ chặn sớm page `/my-mindmap` (dashboard danh sách) khi chưa login
+  if (pathname === "/my-mindmap" && !jwt) {
     return NextResponse.redirect(loginUrl);
   }
 
@@ -31,7 +31,7 @@ export const middleware = async (req) => {
     const mindmapId = pathname.replace("/my-mindmap/", "");
 
     const response = await fetch(
-      new URL(`${process.env.NEXT_PUBLIC_API}/${mindmapId}`).href,
+      new URL(`${process.env.NEXT_PUBLIC_API}/${mindmapId}`, fullUrl).href,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -48,9 +48,11 @@ export const middleware = async (req) => {
     const userEmail = (jwt?.email || jwt?.user?.email || "").toLowerCase();
     const ownerEmail = (data?.email || "").toLowerCase();
 
-    // private + không phải owner -> đá về home
-    if (!data.isAccessible && ownerEmail && ownerEmail !== userEmail) {
-      return NextResponse.redirect(homeUrl);
+    // private + không có thẻ, hoặc không phải owner -> đá về home
+    if (!data.isAccessible) {
+      if (!jwt || (ownerEmail && ownerEmail !== userEmail)) {
+        return NextResponse.redirect(loginUrl); // Require login if private
+      }
     }
 
     return NextResponse.next();
