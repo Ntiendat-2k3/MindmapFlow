@@ -1,49 +1,36 @@
-import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
+import * as mindmapRepo from "@/app/api/lib/db/mindmap.repository";
 import { requireAuth } from "@/app/api/lib/auth";
 
 // GET /api/mindmap — Lấy danh sách mindmap của user hiện tại
-export async function GET(req) {
+export async function GET() {
   try {
     const { session, error } = await requireAuth();
     if (error) return error;
 
-    const userEmail = session.user.email.toLowerCase();
-
-    const { rows } = await sql`
-      SELECT id, name, description as desc, nodes, edges, metadata, is_accessible as "isAccessible", email, created_at 
-      FROM mindmaps 
-      WHERE LOWER(email) = ${userEmail}
-      ORDER BY created_at DESC;
-    `;
+    const rows = await mindmapRepo.findByEmail(session.user.email);
     return NextResponse.json(rows);
   } catch (err) {
-    if (err.message.includes('relation "mindmaps" does not exist')) {
+    if (err.message?.includes('relation "mindmaps" does not exist')) {
       return NextResponse.json([]);
     }
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
 
-// POST /api/mindmap — Tạo mindmap mới (yêu cầu đăng nhập)
+// POST /api/mindmap — Tạo mindmap mới
 export async function POST(req) {
   try {
     const { session, error } = await requireAuth();
     if (error) return error;
 
     const body = await req.json();
-    const { id, name, desc, nodes, edges, metadata, isAccessible, created_at } = body;
+    const result = await mindmapRepo.create({
+      ...body,
+      email: session.user.email,
+    });
 
-    // Bắt buộc email là email của user đang đăng nhập (không cho giả mạo)
-    const email = session.user.email;
-
-    const result = await sql`
-      INSERT INTO mindmaps (id, name, description, nodes, edges, metadata, is_accessible, email, created_at)
-      VALUES (${id}, ${name}, ${desc}, ${JSON.stringify(nodes)}, ${JSON.stringify(edges)}, ${JSON.stringify(metadata)}, ${isAccessible}, ${email}, ${created_at})
-      RETURNING *;
-    `;
-
-    return NextResponse.json(result.rows[0]);
+    return NextResponse.json(result);
   } catch (err) {
     console.error("POST Error:", err);
     return NextResponse.json({ error: err.message }, { status: 500 });

@@ -1,26 +1,19 @@
-import { sql } from "@vercel/postgres";
+import * as mindmapRepo from "@/app/api/lib/db/mindmap.repository";
 import { getServerSession } from "next-auth";
 import options from "@/app/api/auth/[...nextauth]/options";
 
 /**
- * Lấy danh sách mindmap của user đang đăng nhập.
- * Dùng cho Server Components — query DB trực tiếp, không qua API route.
+ * Data Service — Business logic layer.
+ * Xử lý auth + gọi repository. Không chứa SQL.
  */
+
+/** Lấy danh sách mindmap của user đang đăng nhập */
 export async function getMindmapList() {
   try {
     const session = await getServerSession(options);
     if (!session?.user?.email) return null;
 
-    const userEmail = session.user.email.toLowerCase();
-
-    const { rows } = await sql`
-      SELECT id, name, description as desc, nodes, edges, metadata, 
-             is_accessible as "isAccessible", email, created_at 
-      FROM mindmaps 
-      WHERE LOWER(email) = ${userEmail}
-      ORDER BY created_at DESC;
-    `;
-    return rows;
+    return await mindmapRepo.findByEmail(session.user.email);
   } catch (err) {
     if (err.message?.includes('relation "mindmaps" does not exist')) {
       return [];
@@ -30,19 +23,10 @@ export async function getMindmapList() {
   }
 }
 
-/**
- * Lấy chi tiết 1 mindmap theo ID.
- * Cho phép xem nếu: (1) là owner, hoặc (2) mindmap isAccessible = true
- */
+/** Lấy chi tiết 1 mindmap (kiểm tra quyền truy cập) */
 export async function getMindmapById(id) {
   try {
-    const { rows } = await sql`
-      SELECT id, name, description as desc, nodes, edges, metadata, 
-             is_accessible as "isAccessible", email, created_at 
-      FROM mindmaps WHERE id = ${id} LIMIT 1;
-    `;
-
-    const mindmap = rows[0];
+    const mindmap = await mindmapRepo.findById(id);
     if (!mindmap) return null;
 
     // Public → cho xem

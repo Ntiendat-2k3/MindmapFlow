@@ -1,26 +1,37 @@
 "use server";
 
-import { sql } from "@vercel/postgres";
+import * as mindmapRepo from "@/app/api/lib/db/mindmap.repository";
 import { revalidateTag } from "next/cache";
 import { getServerSession } from "next-auth";
 import options from "@/app/api/auth/[...nextauth]/options";
+
+/**
+ * Server Actions — Business logic cho mutations.
+ * Xử lý auth + ownership + gọi repository. Không chứa SQL.
+ */
 
 async function getSessionEmail() {
   const session = await getServerSession(options);
   return session?.user?.email || null;
 }
 
+async function verifyOwnership(mindmapId, userEmail) {
+  const ownerEmail = await mindmapRepo.findOwnerEmail(mindmapId);
+  if (!ownerEmail) return { ok: false, error: "Not found" };
+  if (ownerEmail.toLowerCase() !== userEmail.toLowerCase()) {
+    return { ok: false, error: "Forbidden" };
+  }
+  return { ok: true };
+}
+
+// ─── ADD ──────────────────────────────────────────────
+
 export const fetchAddMindmap = async (body) => {
   try {
     const email = await getSessionEmail();
     if (!email) return { ok: false, error: "Unauthorized" };
 
-    const { id, name, desc, nodes, edges, metadata, isAccessible, created_at } = body;
-
-    await sql`
-      INSERT INTO mindmaps (id, name, description, nodes, edges, metadata, is_accessible, email, created_at)
-      VALUES (${id}, ${name}, ${desc}, ${JSON.stringify(nodes)}, ${JSON.stringify(edges)}, ${JSON.stringify(metadata)}, ${isAccessible}, ${email}, ${created_at})
-    `;
+    await mindmapRepo.create({ ...body, email });
 
     revalidateTag("get_mindmap_list");
     return { ok: true };
@@ -30,19 +41,17 @@ export const fetchAddMindmap = async (body) => {
   }
 };
 
+// ─── DELETE ───────────────────────────────────────────
+
 export const fetchDeleteMindmap = async (id) => {
   try {
     const email = await getSessionEmail();
     if (!email) return { ok: false, error: "Unauthorized" };
 
-    // Kiểm tra ownership
-    const { rows } = await sql`SELECT email FROM mindmaps WHERE id = ${id} LIMIT 1`;
-    if (!rows[0]) return { ok: false, error: "Not found" };
-    if (rows[0].email.toLowerCase() !== email.toLowerCase()) {
-      return { ok: false, error: "Forbidden" };
-    }
+    const ownership = await verifyOwnership(id, email);
+    if (!ownership.ok) return ownership;
 
-    await sql`DELETE FROM mindmaps WHERE id = ${id}`;
+    await mindmapRepo.remove(id);
 
     revalidateTag("get_mindmap_list");
     revalidateTag(`get_mindmap_${id}`);
@@ -53,33 +62,19 @@ export const fetchDeleteMindmap = async (id) => {
   }
 };
 
+// ─── SAVE ─────────────────────────────────────────────
+
 export const fetchSaveMindmap = async (body) => {
   try {
     const email = await getSessionEmail();
     if (!email) return { ok: false, error: "Unauthorized" };
 
-    // Kiểm tra ownership
-    const { rows } = await sql`SELECT email FROM mindmaps WHERE id = ${body.id} LIMIT 1`;
-    if (!rows[0]) return { ok: false, error: "Not found" };
-    if (rows[0].email.toLowerCase() !== email.toLowerCase()) {
-      return { ok: false, error: "Forbidden" };
-    }
+    const ownership = await verifyOwnership(body.id, email);
+    if (!ownership.ok) return ownership;
 
-    const { id, nodes, edges, name, desc, metadata, isAccessible } = body;
+    await mindmapRepo.update(body.id, body);
 
-    await sql`
-      UPDATE mindmaps 
-      SET 
-        nodes = COALESCE(${nodes ? JSON.stringify(nodes) : null}, nodes),
-        edges = COALESCE(${edges ? JSON.stringify(edges) : null}, edges),
-        name = COALESCE(${name || null}, name),
-        description = COALESCE(${desc || null}, description),
-        metadata = COALESCE(${metadata ? JSON.stringify(metadata) : null}, metadata),
-        is_accessible = COALESCE(${isAccessible !== undefined ? isAccessible : null}, is_accessible)
-      WHERE id = ${id}
-    `;
-
-    revalidateTag(`get_mindmap_${id}`);
+    revalidateTag(`get_mindmap_${body.id}`);
     revalidateTag("get_mindmap_list");
 
     return { ok: true };
