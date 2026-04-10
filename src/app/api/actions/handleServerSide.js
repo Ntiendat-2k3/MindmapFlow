@@ -1,46 +1,23 @@
-import { getBaseUrl } from "@/app/utils/baseUrl";
-import { cookies } from "next/headers";
+import { getMindmapList, getMindmapById } from "@/app/api/lib/data";
+import { unstable_cache } from "next/cache";
 
 /**
- * Forward cookies cho server-side fetch
- * (Server Components không tự gửi cookies khi fetch API routes cùng server)
+ * Lấy danh sách mindmap (cached, revalidate khi có thay đổi)
  */
-async function getAuthHeaders() {
-  const cookieStore = await cookies();
-  return {
-    "Content-Type": "application/json",
-    Cookie: cookieStore.toString(),
-  };
-}
-
 export const fetchMindmapList = async () => {
   try {
-    const headers = await getAuthHeaders();
-    const response = await fetch(
-      `${getBaseUrl()}${process.env.NEXT_PUBLIC_API}`,
-      {
-        headers,
-        next: { tags: ["get_mindmap_list"] },
-      },
-    );
-
-    if (!response.ok) return null;
-    return response.json();
+    return await getMindmapList();
   } catch (e) {
     return null;
   }
 };
 
+/**
+ * Lấy chi tiết mindmap theo ID (cached, revalidate khi có thay đổi)
+ */
 export const fetchMindmap = async (id) => {
   try {
-    const headers = await getAuthHeaders();
-    const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}/${id}`, {
-      headers,
-      next: { tags: [`get_mindmap_${id}`] },
-    });
-
-    if (!response.ok) return null;
-    return response.json();
+    return await getMindmapById(id);
   } catch (e) {
     return null;
   }
