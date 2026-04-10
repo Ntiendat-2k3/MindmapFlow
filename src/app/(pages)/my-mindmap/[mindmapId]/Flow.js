@@ -13,7 +13,6 @@ import ReactFlow, {
 } from "reactflow";
 
 import MindmapInfo from "./components/MindmapInfo";
-import NodeCustomFirst from "./components/NodeCustomFirst";
 import NodeCustom from "./components/NodeCustom";
 import EdgeCustom from "./components/EdgeCustom";
 import { nanoid } from "nanoid";
@@ -23,7 +22,7 @@ import "./styleNodeCustom.scss";
 import Loading from "@/app/utils/loading";
 
 const nodeTypes = {
-    nodeCustomFirst: NodeCustomFirst,
+    nodeCustomFirst: NodeCustom,
     nodeCustom: NodeCustom,
 };
 
@@ -37,7 +36,6 @@ const connectionLineStyle = {
 };
 
 function Flow({ mindmap, session }) {
-    const loading = useRef(false);
     const [minimap, setMinimap] = useState(true);
 
     const [nodes, setNodes, onNodesChange] = useNodesState([]);
@@ -49,8 +47,8 @@ function Flow({ mindmap, session }) {
                 ...node,
                 data: {
                     ...node.data,
-                    // truyền setNodes để custom node commit label (blur/enter)
                     setNodes,
+                    isRoot: node.type === "nodeCustomFirst",
                 },
             }))
         );
@@ -161,8 +159,6 @@ function Flow({ mindmap, session }) {
                     <Background variant="dots" color="#94a3b8" gap="30" size="3" />
                 </ReactFlow>
             </div>
-
-            {loading.current && <Loading />}
         </Fragment>
     );
 }

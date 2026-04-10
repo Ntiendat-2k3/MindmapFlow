@@ -12,7 +12,7 @@ export const generateMetadata = async ({ params }) => {
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001";
 
-    if (mindmap === "error" || !mindmap) {
+    if (!mindmap || !mindmap.id) {
         return {
             metadataBase: new URL(siteUrl),
             title: "Mindmap không tồn tại",
@@ -72,18 +72,11 @@ export default async function MindmapPage({ params }) {
     const session = await getServerSession(options);
     const mindmap = await fetchMindmap(mindmapId);
 
+    if (!mindmap || !isObject(mindmap) || !mindmap.id) {
+        return <h3>Lỗi tải mindmap</h3>;
+    }
+
     return (
-        <Fragment>
-            {
-                (mindmap === "error" || Object.keys(mindmap).length === 0) ? 
-                (
-                    <h3>Lỗi tải mindmap</h3>
-                ) :
-                (isObject(mindmap) && Object.keys(mindmap).length > 0) &&
-                (
-                    <FlowProvier mindmap={ mindmap } session={ session } />
-                )
-            }
-        </Fragment>
+        <FlowProvier mindmap={mindmap} session={session} />
     )
 }

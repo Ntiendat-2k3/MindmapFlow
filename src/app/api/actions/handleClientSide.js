@@ -2,11 +2,21 @@
 
 import { revalidateTag } from "next/cache";
 import { getBaseUrl } from "@/app/utils/baseUrl";
+import { cookies } from "next/headers";
+
+async function getAuthHeaders() {
+  const cookieStore = await cookies();
+  return {
+    "Content-Type": "application/json",
+    Cookie: cookieStore.toString(),
+  };
+}
 
 export const fetchAddMindmap = async (body) => {
+  const headers = await getAuthHeaders();
   const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers,
     body: JSON.stringify(body),
   });
 
@@ -20,13 +30,14 @@ export const fetchAddMindmap = async (body) => {
 };
 
 export const fetchDeleteMindmap = async (id) => {
+  const headers = await getAuthHeaders();
   const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}/${id}`, {
     method: "DELETE",
+    headers,
   });
 
   if (response.ok) {
     revalidateTag("get_mindmap_list");
-    revalidateTag("fetch-middleware");
     revalidateTag(`get_mindmap_${id}`);
     return { ok: true };
   }
@@ -37,9 +48,10 @@ export const fetchDeleteMindmap = async (id) => {
 
 export const fetchSaveMindmap = async (body) => {
   try {
+    const headers = await getAuthHeaders();
     const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}/${body.id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify(body),
     });
 
@@ -50,7 +62,6 @@ export const fetchSaveMindmap = async (body) => {
 
     revalidateTag(`get_mindmap_${body.id}`);
     revalidateTag("get_mindmap_list");
-    revalidateTag("fetch-middleware");
 
     return { ok: true };
   } catch (e) {

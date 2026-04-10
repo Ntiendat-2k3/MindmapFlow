@@ -24,7 +24,7 @@ export default async function MyMindmapPage() {
             <ButtonAddMindmap session={session} />
         </div>
 
-        <MindmapGrid session={session} mindmapList={mindmapList} />
+        <MindmapGrid mindmapList={mindmapList} />
       </div>
     </main>
   );

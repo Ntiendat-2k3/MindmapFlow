@@ -1,7 +1,7 @@
 "use client";
 
 import { fetchAddMindmap } from "@/app/api/actions/handleClientSide";
-import { v4 as uuidv4 } from "uuid";
+import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 import LoadingAnimation from "@/app/utils/loading.js";
@@ -18,17 +18,9 @@ export default function ButtonAddMindmap({ session }) {
       return;
     }
 
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = ("0" + (currentDate.getMonth() + 1)).slice(-2);
-    const day = ("0" + currentDate.getDate()).slice(-2);
-    const hours = ("0" + currentDate.getHours()).slice(-2);
-    const minutes = ("0" + currentDate.getMinutes()).slice(-2);
-    const seconds = ("0" + currentDate.getSeconds()).slice(-2);
-    const formattedTime = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
 
     const newMindmap = {
-      id: uuidv4(),
+      id: nanoid(),
       name: "Mindmap không có tên",
       desc: "Chưa có mô tả",
       nodes: [
@@ -48,7 +40,7 @@ export default function ButtonAddMindmap({ session }) {
       },
       isAccessible: false,
       email: userEmail,
-      created_at: formattedTime,
+      created_at: new Date().toISOString(),
     };
 
     setLoading(true);

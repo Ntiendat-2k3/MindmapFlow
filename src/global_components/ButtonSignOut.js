@@ -6,7 +6,6 @@ const handleClickSignOut = async () => {
     await signOut({
         callbackUrl: `${window.location.origin}/home`
     });
-    window.location.origin
 }
 
 export default function ButtonSignOut() {

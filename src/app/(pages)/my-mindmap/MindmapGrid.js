@@ -6,13 +6,13 @@ import { useRouter } from "next/navigation";
 import { fetchDeleteMindmap } from "@/app/api/actions/handleClientSide";
 import notify from "@/app/utils/notify";
 
-export default function MindmapGrid({ session, mindmapList }) {
+export default function MindmapGrid({ mindmapList }) {
   const router = useRouter();
 
   const handleClickDelete = (id) => {
     const method = async () => {
       const response = await fetchDeleteMindmap(id);
-      if (response) {
+      if (response?.ok) {
         notify("success", "Xóa mindmap thành công!");
         router.refresh();
       } else {
@@ -32,7 +32,7 @@ export default function MindmapGrid({ session, mindmapList }) {
     router.push(`/my-mindmap/${id}`);
   };
 
-  if (mindmapList === "error") {
+  if (!Array.isArray(mindmapList)) {
     return (
       <div className="empty-state">
         <div className="empty-icon">⚠️</div>
@@ -42,11 +42,7 @@ export default function MindmapGrid({ session, mindmapList }) {
     );
   }
 
-  const userMindmaps = Array.isArray(mindmapList)
-    ? mindmapList.filter((mindmap) => mindmap.email === session.user.email)
-    : [];
-
-  if (userMindmaps.length === 0) {
+  if (mindmapList.length === 0) {
     return (
       <div className="empty-state">
         <div className="empty-icon">📝</div>
@@ -58,7 +54,7 @@ export default function MindmapGrid({ session, mindmapList }) {
 
   return (
     <div className="mindmap-grid">
-      {userMindmaps.map(({ id, name, desc, created_at }) => (
+      {mindmapList.map(({ id, name, desc, created_at }) => (
         <div
           className="mindmap-card"
           key={id}

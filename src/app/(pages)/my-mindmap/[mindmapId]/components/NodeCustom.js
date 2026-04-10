@@ -4,13 +4,11 @@ import { stripHtml } from "@/app/utils/methods";
 import { useEffect, useRef, useState, useCallback, memo } from "react";
 import { Handle, Position } from "reactflow";
 
-
-
 function NodeCustom({ id, data, isConnectable, selected }) {
     const overlayRef = useRef(null);
     const inputContentRef = useRef(null);
 
-    const { label, setNodes } = data;
+    const { label, setNodes, isRoot } = data;
     const [content, setContent] = useState(label);
 
     // sync khi label thay đổi từ bên ngoài (load / undo / v.v)
@@ -31,15 +29,17 @@ function NodeCustom({ id, data, isConnectable, selected }) {
 
     const handleDoubleClick = () => {
         inputContentRef.current?.focus();
+        inputContentRef.current?.select();
     };
 
-    // ✅ onChange chỉ update local state (không setNodes mỗi ký tự)
     const handleChangeContent = (event) => {
         setContent(stripHtml(event.target.value));
     };
 
+    const defaultLabel = isRoot ? "My Mindmap" : "Node";
+
     const fillEmptyAndCommit = (rawValue) => {
-        const v = (rawValue ?? "").trim() || "Node";
+        const v = (rawValue ?? "").trim() || defaultLabel;
         setContent(v);
         commitLabel(v);
     };
@@ -51,7 +51,7 @@ function NodeCustom({ id, data, isConnectable, selected }) {
     const handleKeyDown = (event) => {
         if (event.key !== "Enter") return;
         event.preventDefault();
-        event.currentTarget.blur(); // blur -> commit
+        event.currentTarget.blur();
     };
 
     return (
@@ -59,18 +59,22 @@ function NodeCustom({ id, data, isConnectable, selected }) {
             className={`node-custom ${selected ? "selected" : ""}`}
             onDoubleClick={handleDoubleClick}
         >
-            <Handle
-                type="target"
-                position={Position.Top}
-                isConnectable={isConnectable}
-                className="css-handle"
-                style={{ translate: "0% -50%", top: "0px", bottom: "auto" }}
-            />
+            {/* Root node không có target handle (không ai kéo vào root) */}
+            {!isRoot && (
+                <Handle
+                    type="target"
+                    position={Position.Top}
+                    isConnectable={isConnectable}
+                    className="css-handle"
+                    style={{ translate: "0% -50%", top: "0px", bottom: "auto" }}
+                />
+            )}
 
             <div className="main-content">
                 <div ref={overlayRef} className="overlay"></div>
                 <input
                     ref={inputContentRef}
+                    className="nodrag nowheel"
                     type="text"
                     value={content}
                     onChange={handleChangeContent}

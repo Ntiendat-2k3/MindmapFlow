@@ -1,34 +1,47 @@
 import { getBaseUrl } from "@/app/utils/baseUrl";
+import { cookies } from "next/headers";
+
+/**
+ * Forward cookies cho server-side fetch
+ * (Server Components không tự gửi cookies khi fetch API routes cùng server)
+ */
+async function getAuthHeaders() {
+  const cookieStore = await cookies();
+  return {
+    "Content-Type": "application/json",
+    Cookie: cookieStore.toString(),
+  };
+}
 
 export const fetchMindmapList = async () => {
   try {
+    const headers = await getAuthHeaders();
     const response = await fetch(
-      `${getBaseUrl()}${process.env.NEXT_PUBLIC_API}?_sort=created_at&_order=desc`,
+      `${getBaseUrl()}${process.env.NEXT_PUBLIC_API}`,
       {
-        next: {
-          tags: ["get_mindmap_list"],
-        },
+        headers,
+        next: { tags: ["get_mindmap_list"] },
       },
     );
 
+    if (!response.ok) return null;
     return response.json();
   } catch (e) {
-    return "error";
+    return null;
   }
 };
 
 export const fetchMindmap = async (id) => {
   try {
+    const headers = await getAuthHeaders();
     const response = await fetch(`${getBaseUrl()}${process.env.NEXT_PUBLIC_API}/${id}`, {
-      next: {
-        // cache theo từng mindmap để tránh invalidate "all mindmaps" không cần thiết
-        tags: [`get_mindmap_${id}`],
-      },
+      headers,
+      next: { tags: [`get_mindmap_${id}`] },
     });
 
-    // ❗️Không revalidate ở đây (fetch). Chỉ revalidate sau khi PATCH/POST/DELETE.
+    if (!response.ok) return null;
     return response.json();
   } catch (e) {
-    return "error";
+    return null;
   }
 };
