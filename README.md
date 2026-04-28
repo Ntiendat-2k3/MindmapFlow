@@ -2,33 +2,7 @@
 
 Một ứng dụng web full-stack hiện đại dùng để tạo, quản lý và chia sẻ sơ đồ tư duy (mind map) tương tác. Được xây dựng với Next.js 14, React Flow, NextAuth, và cơ sở dữ liệu Vercel Postgres.
 
-## 🌟 Tổng quan
-
-MindmapFlow trao quyền cho người dùng sắp xếp các luồng suy nghĩ và ý tưởng trực quan thông qua giao diện vẽ sơ đồ tư duy dễ sử dụng. Tận dụng tối đa Next.js App Router và Server Actions, dự án mang lại trải nghiệm nhanh chóng, bảo mật, chuẩn SEO, đồng thời vẫn giữ được khả năng quản lý trạng thái (state management) mạnh mẽ ở client-side.
-
-## ✨ Các chức năng chính (Features)
-
-### 1. 🎨 Trình chỉnh sửa Sơ đồ tư duy (Interactive Editor)
-- **Vẽ và thiết kế tự do**: Dựa trên React Flow, không gian canvas vô hạn cho phép bạn kéo thả (drag & drop), thu phóng (zoom/pan) dễ dàng.
-- **Tạo Node thông minh**: Kéo dây nối từ một Node có sẵn ra khoảng trống để hệ thống tự động tạo Node mới có liên kết với Node gốc.
-- **Tuỳ biến linh hoạt**: Tích hợp các Component Custom cho Node và Edge để tạo giao diện hiển thị chuyên biệt.
-- **Hỗ trợ định hướng**: Tích hợp MiniMap (bản đồ thu nhỏ) giúp bạn định vị trên các sơ đồ lớn, đi kèm Control Bar hỗ trợ zoom tiện dụng.
-
-### 2. 🗂️ Quản lý Sơ đồ (Dashboard)
-- **Trang quản lý cá nhân**: Nơi tổng hợp toàn bộ các mindmap đã tạo.
-- **Thao tác nhanh chóng**: Cho phép tạo mindmap mới, xem danh sách, cập nhật thông tin và xóa mindmap dễ dàng.
-- **Lưu trữ tự động & thủ công**: Cơ chế lưu trạng thái mindmap (vị trí nodes, text, connections) một cách an toàn.
-
-### 3. 🔗 Chia sẻ và SEO (Sharing & SEO Metadata)
-- **Kiểm soát quyền truy cập**: Thiết lập Mindmap ở chế độ **Private** (Chỉ mình tôi) hoặc **Public** (Công khai cho người có link).
-- **Chia sẻ link tiện lợi**: Cung cấp nút copy link nhanh chóng để chia sẻ cho đồng nghiệp và bạn bè.
-- **Cấu hình Meta Data (SEO/Social)**: Khi bật Public, người dùng có thể tự do định nghĩa `Title`, `Description` và URL `Ảnh chia sẻ (Open Graph Image)` riêng biệt cho Mindmap đó để hiển thị đẹp mắt khi gửi qua Zalo, Facebook, v.v.
-
-### 4. 🔒 Xác thực & Phân quyền (Authentication & Authorization)
-- **Đăng nhập tiện lợi**: Tích hợp NextAuth hỗ trợ đăng nhập qua OAuth bằng **Google** và **GitHub**.
-- **Bảo mật dữ liệu**: Hệ thống tự động xác thực phiên đăng nhập (session). Chỉ có chủ sở hữu (author) mới có quyền chỉnh sửa, thay đổi Mindmap. Khách truy cập (nếu có link Public) chỉ có quyền xem (Read-only).
-
-## 🛠️ Công nghệ sử dụng
+## Công nghệ sử dụng (Tech Stack)
 
 - **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
 - **UI Library:** [React 18](https://react.dev/)
@@ -39,7 +13,43 @@ MindmapFlow trao quyền cho người dùng sắp xếp các luồng suy nghĩ v
 - **Styling:** Sass / SCSS
 - **Thông báo (Notifications):** [Sonner](https://sonner.emilkowal.ski/)
 
-## 📂 Cấu trúc thư mục dự án
+## Case Study
+
+- **Vấn đề:** MindmapFlow giúp giải quyết nhu cầu tạo lập, hệ thống hóa và chia sẻ sơ đồ tư duy trực tuyến, hỗ trợ người dùng dễ dàng sắp xếp luồng suy nghĩ của mình một cách trực quan.
+- **Thách thức:** Việc quản lý trạng thái (state) phức tạp của các node và edge khi người dùng tương tác liên tục trên canvas, đi kèm với yêu cầu đồng bộ và lưu trữ dữ liệu sơ đồ mượt mà, ổn định.
+- **Giải pháp:** Dự án kết hợp sức mạnh của React Flow và Zustand để tối ưu quản lý state ở client-side, cùng với Next.js Server Actions và Vercel Postgres nhằm xử lý việc lưu trữ dữ liệu an toàn, hiệu suất cao ở phía server.
+
+## Tổng quan
+
+MindmapFlow trao quyền cho người dùng sắp xếp các luồng suy nghĩ và ý tưởng trực quan thông qua giao diện vẽ sơ đồ tư duy dễ sử dụng. Tận dụng tối đa Next.js App Router và Server Actions, dự án mang lại trải nghiệm nhanh chóng, bảo mật, chuẩn SEO, đồng thời vẫn giữ được khả năng quản lý trạng thái (state management) mạnh mẽ ở client-side.
+
+## Các chức năng chính (Features)
+
+### 1. Trình chỉnh sửa Sơ đồ tư duy (Interactive Editor)
+
+- **Vẽ và thiết kế tự do**: Dựa trên React Flow, không gian canvas vô hạn cho phép bạn kéo thả (drag & drop), thu phóng (zoom/pan) dễ dàng.
+- **Tạo Node thông minh**: Kéo dây nối từ một Node có sẵn ra khoảng trống để hệ thống tự động tạo Node mới có liên kết với Node gốc.
+- **Tuỳ biến linh hoạt**: Tích hợp các Component Custom cho Node và Edge để tạo giao diện hiển thị chuyên biệt.
+- **Hỗ trợ định hướng**: Tích hợp MiniMap (bản đồ thu nhỏ) giúp bạn định vị trên các sơ đồ lớn, đi kèm Control Bar hỗ trợ zoom tiện dụng.
+
+### 2. Quản lý Sơ đồ (Dashboard)
+
+- **Trang quản lý cá nhân**: Nơi tổng hợp toàn bộ các mindmap đã tạo.
+- **Thao tác nhanh chóng**: Cho phép tạo mindmap mới, xem danh sách, cập nhật thông tin và xóa mindmap dễ dàng.
+- **Lưu trữ tự động & thủ công**: Cơ chế lưu trạng thái mindmap (vị trí nodes, text, connections) một cách an toàn.
+
+### 3. Chia sẻ và SEO (Sharing & SEO Metadata)
+
+- **Kiểm soát quyền truy cập**: Thiết lập Mindmap ở chế độ **Private** (Chỉ mình tôi) hoặc **Public** (Công khai cho người có link).
+- **Chia sẻ link tiện lợi**: Cung cấp nút copy link nhanh chóng để chia sẻ cho đồng nghiệp và bạn bè.
+- **Cấu hình Meta Data (SEO/Social)**: Khi bật Public, người dùng có thể tự do định nghĩa `Title`, `Description` và URL `Ảnh chia sẻ (Open Graph Image)` riêng biệt cho Mindmap đó để hiển thị đẹp mắt khi gửi qua Zalo, Facebook, v.v.
+
+### 4. Xác thực & Phân quyền (Authentication & Authorization)
+
+- **Đăng nhập tiện lợi**: Tích hợp NextAuth hỗ trợ đăng nhập qua OAuth bằng **Google** và **GitHub**.
+- **Bảo mật dữ liệu**: Hệ thống tự động xác thực phiên đăng nhập (session). Chỉ có chủ sở hữu (author) mới có quyền chỉnh sửa, thay đổi Mindmap. Khách truy cập (nếu có link Public) chỉ có quyền xem (Read-only).
+
+## Cấu trúc thư mục dự án
 
 ```text
 src/
@@ -55,7 +65,7 @@ src/
 │   └── page.js           # File chạy chính của trang chủ
 ```
 
-## 🚀 Hướng dẫn cài đặt
+## Hướng dẫn cài đặt
 
 ### 1. Clone repository về máy
 
